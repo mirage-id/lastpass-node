@@ -10,9 +10,10 @@ import getKey from './lib/getKey';
 import openVault from './lib/openVault';
 import LastpassError from './lib/lastpassError';
 
-const accessAsync = promisify(access);
-const readFileAsync = promisify(readFile);
-const writeFileAsync = promisify(writeFile);
+// won't work in browser, but at least doesn't break browser
+const accessAsync = access && promisify(access);
+const readFileAsync = readFile && promisify(readFile);
+const writeFileAsync = writeFile && promisify(writeFile);
 
 const Lastpass = class {
   constructor(username) {
